@@ -1,0 +1,39 @@
+class solution:
+
+    def find(self,nums,t):
+        result=[]
+        count=0
+        self.solve(0,[],nums,result,0)
+        return result
+
+
+
+    def solve(self,index,path,nums,result,sum):
+
+        if sum==t:
+            result.append(path.copy())
+
+            return
+        if sum>t:
+            return
+        if index>=len(nums):
+            return
+
+        sum+=nums[index]
+        path.append(nums[index])
+        self.solve(index+1,path,nums,result,sum)
+        ans=path.pop()
+        sum=sum-ans
+        self.solve(index + 1, path, nums, result,sum)
+
+
+
+
+nums=[5,9,3,4,1]
+
+t=9
+obj=solution()
+print(obj.find(nums,t))
+
+
+#code and debug
